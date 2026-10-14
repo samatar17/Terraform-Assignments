@@ -1,0 +1,26 @@
+#cloud-config
+
+package_update: true
+
+packages:
+  - nginx
+
+write_files:
+  - path: /var/www/html/index.html
+    permissions: '0644'
+    content: |
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Terraform Assignment 2</title>
+      </head>
+      <body>
+        <h1>Terraform Assignment 2 Successful!</h1>
+        <p>NGINX installed automatically using cloud-init.</p>
+        <p>Deployed on AWS EC2 using Terraform.</p>
+      </body>
+      </html>
+
+runcmd:
+  - systemctl enable nginx
+  - systemctl restart nginx
